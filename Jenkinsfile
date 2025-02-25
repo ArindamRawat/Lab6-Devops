@@ -1,28 +1,22 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.9.9' // Name of the Maven tool configured in Jenkins
+        maven 'Maven 3.9.9' // Ensure this name matches the configured Maven tool in Jenkins
     }
     stages {
         stage('Compile Stage') {
             steps {
-                withMaven(maven: 'Maven 3.9.9') { // Use the configured Maven name
-                    sh 'mvn clean compile'
-                }
+                bat 'mvn clean compile' // Use 'bat' instead of 'sh' for Windows
             }
         }
         stage('Testing Stage') {
             steps {
-                withMaven(maven: 'Maven 3.9.9') { // Use the configured Maven name
-                    sh 'mvn test'
-                }
+                bat 'mvn test'
             }
         }
         stage('Deployment Stage') {
             steps {
-                withMaven(maven: 'Maven 3.9.9') { // Use the configured Maven name
-                    sh 'mvn deploy'
-                }
+                bat 'mvn deploy'
             }
         }
     }
